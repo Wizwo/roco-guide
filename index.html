@@ -343,6 +343,26 @@ body::after {
 }
 .pet-card:hover { border-color: var(--border-visible); transform:translateY(-2px); box-shadow: var(--shadow-md); }
 .pet-card:hover::after { opacity: 1; }
+
+/* 属性筛选标签 */
+.attr-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.attr-pill {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.attr-pill:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+.attr-pill.active { background: var(--accent-gold); border-color: var(--accent-gold); color: #111; font-weight: 600; }
 .pet-avatar {
   width:46px; height:46px; border-radius: var(--radius-full);
   display:flex; align-items:center; justify-content:center;
@@ -500,7 +520,8 @@ body::after {
     </a>
     <div class="nav-search" role="search" id="search"></div>
     <ul class="nav-links" role="menubar">
-      <li role="none"><a href="#tier" role="menuitem" class="active">天梯榜</a></li>
+      <li role="none"><a href="#tier" role="menuitem">天梯榜</a></li>
+      <li role="none"><a href="#allpets" role="menuitem">全宠图鉴</a></li>
       <li role="none"><a href="#attribute" role="menuitem">属性克制</a></li>
       <li role="none"><a href="#guides" role="menuitem">攻略库</a></li>
       <li role="none"><a href="#quick" role="menuitem">快速入口</a></li>
@@ -514,6 +535,7 @@ body::after {
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
   <a href="#tier" role="menuitem">🏆 天梯榜</a>
+  <a href="#allpets" role="menuitem">🐾 全宠图鉴</a>
   <a href="#attribute" role="menuitem">⚔️ 属性克制</a>
   <a href="#guides" role="menuitem">📖 攻略库</a>
   <a href="#quick" role="menuitem">🧭 快速入口</a>
@@ -527,7 +549,7 @@ body::after {
   <h1>洛克王国攻略站</h1>
   <p>从新手到大师 — 宠物图鉴、战斗策略、培养方案、活动日历，一站式魔法冒险指南</p>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-val">320+</div><div class="hero-stat-lbl">收录宠物</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">437</div><div class="hero-stat-lbl">收录宠物</div></div>
     <div class="hero-stat"><div class="hero-stat-val">18</div><div class="hero-stat-lbl">属性体系</div></div>
     <div class="hero-stat"><div class="hero-stat-val">S—C</div><div class="hero-stat-lbl">强度分级</div></div>
     <div class="hero-stat"><div class="hero-stat-val">50+</div><div class="hero-stat-lbl">攻略文章</div></div>
@@ -603,6 +625,31 @@ body::after {
           <a class="pet-card" href="pet.html?id=lidong"><div class="pet-avatar rare" style="background:rgba(103,232,249,0.15)">🌨️</div><div class="pet-info"><div class="pet-name">立冬</div><div class="pet-sub">冰系 · 稀有</div><div class="pet-tags"><span class="pet-tag role">首发控场</span><span class="pet-tag type">PVP T2</span></div></div></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ ALL PETS (动态) ═══ -->
+  <section class="section" id="allpets" aria-labelledby="allpets-heading">
+    <div class="section-header">
+      <span class="icon">🐾</span><h2 id="allpets-heading">全宠图鉴</h2>
+      <span class="muted" id="petCount">加载中…</span>
+    </div>
+
+    <!-- 属性筛选标签 -->
+    <div class="attr-filter" id="attrFilter" role="tablist" aria-label="按属性筛选">
+      <button class="attr-pill active" data-attr="全部" role="tab" aria-selected="true">全部</button>
+    </div>
+
+    <!-- 宠物网格（动态渲染） -->
+    <div class="tier-pets" id="allPetsGrid" style="grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));">
+      <!-- 动态填充 -->
+    </div>
+
+    <div id="petsLoading" style="text-align:center;padding:40px;color:var(--text-dim);">
+      <span>正在从 bilibili wiki 加载宠物数据…</span>
+    </div>
+    <div id="petsError" style="display:none;text-align:center;padding:40px;color:var(--text-dim);">
+      数据加载失败，请刷新重试。
     </div>
   </section>
 
@@ -722,6 +769,121 @@ attrs.forEach(a => {
     </div>`;
   attrGrid.appendChild(card);
 });
+
+// ═══ 全宠图鉴动态加载 ═══
+const PET_DATA_URL = './data/pets.json';
+
+const ALL_ATTRS = ['全部','普通','火','水','草','电','龙','冰','武','石','翼','幽灵','超能','虫','恶','土','钢','光','暗'];
+const EMOJI_MAP = {
+  普通:'⚪', 火:'🔥', 水:'💧', 草:'🌿', 电:'⚡', 龙:'🐉',
+  冰:'❄️', 武:'👊', 石:'🪨', 翼:'🕊️', 幽灵:'👻', 超能:'🧠',
+  虫:'🐛', 恶:'😈', 土:'🏔️', 钢:'⚙️', 光:'✨', 暗:'🌑'
+};
+
+let allPetsData = {};
+let currentAttr = '全部';
+
+function getAttrColor(attr) {
+  const colors = {
+    普通:'rgba(148,163,184,0.15)', 火:'rgba(249,115,22,0.15)', 水:'rgba(56,189,248,0.15)',
+    草:'rgba(74,222,128,0.15)', 电:'rgba(250,204,21,0.15)', 龙:'rgba(139,92,246,0.15)',
+    冰:'rgba(103,232,249,0.15)', 武:'rgba(239,68,68,0.15)', 石:'rgba(168,162,158,0.15)',
+    翼:'rgba(147,197,253,0.15)', 幽灵:'rgba(192,132,252,0.15)', 超能:'rgba(236,72,153,0.15)',
+    虫:'rgba(251,191,36,0.15)', 恶:'rgba(139,92,246,0.15)', 土:'rgba(180,83,9,0.15)',
+    钢:'rgba(156,163,175,0.15)', 光:'rgba(250,204,21,0.15)', 暗:'rgba(75,75,75,0.15)'
+  };
+  return colors[attr] || 'rgba(148,163,184,0.15)';
+}
+
+function makeSlug(name) {
+  return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+function renderPetCard(pet) {
+  const attr = pet['主属性'] || '普通';
+  const emoji = EMOJI_MAP[attr] || '🐾';
+  const color = getAttrColor(attr);
+  const slug = makeSlug(pet.name);
+  const rarity = pet['稀有度'] || '';
+  const hp = pet['生命'] || '?';
+  const atk = pet['物攻'] || pet['魔攻'] || '?';
+
+  return `<a class="pet-card" href="pet.html?id=${slug}" title="${pet.name}">
+    <div class="pet-avatar" style="background:${color}">${emoji}</div>
+    <div class="pet-info">
+      <div class="pet-name">${pet.name}</div>
+      <div class="pet-sub">${attr}系 · ${rarity}</div>
+      <div class="pet-tags" style="margin-top:4px">
+        <span class="pet-tag type">HP ${hp}</span>
+        <span class="pet-tag type">ATK ${atk}</span>
+      </div>
+    </div>
+  </a>`;
+}
+
+function buildFilterPills(pets) {
+  const usedAttrs = new Set();
+  Object.values(pets).forEach(p => { if (p['主属性']) usedAttrs.add(p['主属性']); });
+
+  const filter = document.getElementById('attrFilter');
+  filter.innerHTML = '';
+
+  ['全部', ...Array.from(usedAttrs).sort()].forEach(attr => {
+    const btn = document.createElement('button');
+    btn.className = 'attr-pill' + (attr === '全部' ? ' active' : '');
+    btn.dataset.attr = attr;
+    btn.textContent = (EMOJI_MAP[attr] || '🏷️') + ' ' + attr;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-selected', attr === '全部' ? 'true' : 'false');
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.attr-pill').forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      currentAttr = attr;
+      renderPetsGrid(allPetsData);
+    });
+    filter.appendChild(btn);
+  });
+}
+
+function renderPetsGrid(pets) {
+  const grid = document.getElementById('allPetsGrid');
+  const filtered = Object.values(pets).filter(p => {
+    if (currentAttr === '全部') return true;
+    return p['主属性'] === currentAttr;
+  });
+
+  grid.innerHTML = filtered.slice(0, 200).map(renderPetCard).join('');
+  document.getElementById('petCount').textContent =
+    `${filtered.length} 只宠物${filtered.length >= 200 ? '（仅展示前200只）' : ''}`;
+}
+
+async function loadPets() {
+  const loading = document.getElementById('petsLoading');
+  const error = document.getElementById('petsError');
+  try {
+    const resp = await fetch(PET_DATA_URL + '?t=' + Date.now(), { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const data = await resp.json();
+    allPetsData = data.pets || {};
+    buildFilterPills(allPetsData);
+    renderPetsGrid(allPetsData);
+    loading.style.display = 'none';
+    // Also update nav pet count
+    document.getElementById('petCount').textContent =
+      `${Object.keys(allPetsData).length} 只宠物`;
+  } catch (e) {
+    console.error('Failed to load pets:', e);
+    loading.style.display = 'none';
+    error.style.display = 'block';
+  }
+}
+
+// Load pets on page ready
+loadPets();
 </script>
 
 </body>

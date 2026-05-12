@@ -1,0 +1,55 @@
+name: 更新宠物数据
+
+on:
+  schedule:
+    # 每天早上6点自动更新（北京时间 UTC-8 = 2:00 UTC）
+    - cron: '0 2 * * *'
+  workflow_dispatch:   # 支持手动触发
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/scrape-pets.js'
+      - '.github/workflows/update-data.yml'
+
+jobs:
+  update-pets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 运行爬虫
+        run: node scripts/scrape-pets.js
+
+      - name: 检查数据变更
+        id: changed
+        run: |
+          git diff --stat data/pets.json >> $GITHUB_OUTPUT
+          echo "changed=$(git diff --name-only data/pets.json | wc -l)" >> $GITHUB_OUTPUT
+
+      - name: 提交更新
+        if: steps.changed.outputs.changed == '1'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/pets.json
+          git commit -m "🤖 自动更新宠物数据 $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: 发布日报（无变更时跳过）
+        if: steps.changed.outputs.changed == '1'
+        run: |
+          # 提取本次更新的宠物数量和关键信息
+          COUNT=$(node -e "const d=require('./data/pets.json'); console.log(d.totalCount)")
+          echo "更新完成，共 ${COUNT} 只宠物数据"

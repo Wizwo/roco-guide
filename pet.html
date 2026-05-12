@@ -120,8 +120,8 @@ body::after{width:500px;height:500px;background:radial-gradient(circle,rgba(212,
 <footer class="footer"><p>洛克王国攻略站 · <a href="index.html">返回首页</a></p><p style="margin-top:4px;color:var(--text-dim)">© 2026 Roco Kingdom Guide</p></footer>
 
 <script>
-// ═══════════ 宠物数据库 ═══════════
-const pets = {
+// ═══════════ 精选宠物详细数据（兜底） ═══════════
+const PREMIUM_PETS = {
   shenglong: {
     id:'shenglong',name:'圣龙阿布',icon:'🐉',tier:'S',
     type:'龙系',rarity:'传说',role:'全能核心',
@@ -177,287 +177,88 @@ const pets = {
     evolution:[{icon:'🐤',name:'雏翼鸟',lvl:'初始形态'},{icon:'🦅',name:'翼王',lvl:'天空之石进化'}],
     obtain:['天空之城顶层挑战翼王（需飞行徽章）','天空之石：天空之城探索掉落','"天空霸主"限时活动'],
     desc:'160速度种族值冠绝全宠。配合先制技能和超高物攻，是残局收割的绝对王者。羽栖提供了宝贵的续航能力。'
-  },
-  wudou: {
-    id:'wudou',name:'武斗酷猫',icon:'⚔️',tier:'S',
-    type:'武系',rarity:'史诗',role:'物理打手',
-    tags:['史诗品质','武系','PVP T0'],
-    color:'rgba(245,158,11,0.1)',border:'#f59e0b',glow:'rgba(245,158,11,0.2)',
-    stats:{hp:135,atk:160,def:110,spa:55,spd:100,spe:125},
-    skills:[
-      {icon:'👊',bg:'rgba(239,68,68,0.15)',name:'近身战',desc:'武系物理攻击，使用后自身双防降低1级。极限爆发。',meta:'威力 120 · PP 5'},
-      {icon:'⚔️',bg:'rgba(168,162,158,0.15)',name:'剑舞',desc:'普通系变化技，自身攻击力提升2级。核心强化技。',meta:'变化技 · PP 15'},
-      {icon:'💪',bg:'rgba(249,115,22,0.15)',name:'健美',desc:'武系变化技，提升攻击和防御各1级。稳健强化。',meta:'变化技 · PP 10'},
-      {icon:'🔥',bg:'rgba(249,115,22,0.15)',name:'火焰踢',desc:'火系物理攻击，有20%几率灼伤。补充打击面。',meta:'威力 85 · PP 12'}
-    ],
-    evolution:[{icon:'🐱',name:'喵喵',lvl:'初始宠物'},{icon:'🐱',name:'格斗猫',lvl:'Lv.28 进化'},{icon:'⚔️',name:'武斗酷猫',lvl:'格斗之证进化'}],
-    obtain:['初始三宠之一（推荐新手选择）','格斗之证：武系道馆挑战掉落','宠物园巡逻低概率遇到'],
-    desc:'剑舞+近身战的经典组合，160物攻种族值在强化后无人能挡。获取门槛极低（初始宠物），是最具性价比的S级宠物。'
-  },
-  shuiling: {
-    id:'shuiling',name:'水灵',icon:'🐳',tier:'A',
-    type:'水系',rarity:'稀有',role:'PVE万金油',
-    tags:['稀有品质','水系','PVE首选'],
-    color:'rgba(56,189,248,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:150,atk:65,spa:130,spd:140,spe:85,atk2:65,def:90},
-    skills:[
-      {icon:'💧',bg:'rgba(56,189,248,0.15)',name:'水炮',desc:'水系特殊攻击，120威力，但命中率85%。高伤高回报。',meta:'威力 120 · PP 5'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'水流环',desc:'水系变化技，每回合回复1/8最大生命，持续5回合。',meta:'变化技 · PP 15'},
-      {icon:'🧊',bg:'rgba(103,232,249,0.15)',name:'冰冻光线',desc:'冰系特殊攻击，有20%几率冰冻。补充克制面。',meta:'威力 90 · PP 10'},
-      {icon:'✨',bg:'rgba(147,197,253,0.15)',name:'祈雨',desc:'水系变化技，5回合内水系技能威力提升50%。天气核心。',meta:'变化技 · PP 8'}
-    ],
-    evolution:[{icon:'🐟',name:'小水灵',lvl:'初始形态'},{icon:'🐳',name:'水灵',lvl:'Lv.32 进化'}],
-    obtain:['海底世界水域捕捉小水灵','水上城市探索获取','新手引导赠送（限时）'],
-    desc:'PVE通关首选。水炮+祈雨的爆发组合，水流环提供持续回复，高特防使其不怕法系伤害。是新手推图最推荐的A级宠物。'
-  },
-  pili: {
-    id:'pili',name:'霹雳雷球',icon:'⚡',tier:'A',
-    type:'电系',rarity:'稀有',role:'先手压制',
-    tags:['稀有品质','电系','PVP T1'],
-    color:'rgba(250,204,21,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:110,atk:85,spa:145,spd:100,spe:150,atk2:85,def:80},
-    skills:[
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'十万伏特',desc:'电系特殊攻击，有30%几率麻痹目标。稳定输出。',meta:'威力 95 · PP 12'},
-      {icon:'🌩️',bg:'rgba(250,204,21,0.15)',name:'打雷',desc:'电系特殊攻击，命中率70%，但威力巨大。雨天必中。',meta:'威力 120 · PP 8'},
-      {icon:'💨',bg:'rgba(192,132,252,0.15)',name:'高速移动',desc:'超能系变化技，自身速度提升2级。先手保障。',meta:'变化技 · PP 20'},
-      {icon:'✨',bg:'rgba(147,197,253,0.15)',name:'电磁波',desc:'电系变化技，100%麻痹目标。速度减半+行动概率。',meta:'变化技 · PP 15'}
-    ],
-    evolution:[{icon:'⚡',name:'电球小子',lvl:'初始形态'},{icon:'⚡',name:'霹雳雷球',lvl:'雷电石进化'}],
-    obtain:['雷霆峡谷雷暴天捕捉电球小子','雷电石：电系道馆挑战掉落','"雷神之怒"限时活动奖励'],
-    desc:'150速度+145特攻，先手电磁波麻痹后十万伏特收割。是电系速攻的标杆，克制水系和飞行系效果极佳。'
-  },
-  qili: {
-    id:'qili',name:'奇丽草',icon:'🌿',tier:'A',
-    type:'草系',rarity:'普通',role:'消耗之王',
-    tags:['普通品质','草系','PVP T1','消耗型'],
-    color:'rgba(74,222,128,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:160,atk:60,spa:90,spd:140,spe:70,atk2:60,def:130},
-    skills:[
-      {icon:'🌿',bg:'rgba(74,222,128,0.15)',name:'寄生种子',desc:'草系变化技，每回合吸取目标1/8最大生命。核心消耗技。',meta:'变化技 · PP 10'},
-      {icon:'💊',bg:'rgba(74,222,128,0.15)',name:'光合作用',desc:'草系变化技，回复最大生命50%。晴天回复2/3。',meta:'变化技 · PP 8'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'铁壁',desc:'钢系变化技，自身防御提升2级。配合高HP成为肉山。',meta:'变化技 · PP 12'},
-      {icon:'☠️',bg:'rgba(192,132,252,0.15)',name:'剧毒',desc:'毒系变化技，目标中毒，每回合伤害递增。消耗核心。',meta:'变化技 · PP 10'}
-    ],
-    evolution:[{icon:'🌱',name:'小草',lvl:'初始形态'},{icon:'🌿',name:'奇丽草',lvl:'Lv.24 进化'}],
-    obtain:['宠物园草地捕捉小草','初始区域即可获得','全地图最常见的野生宠物之一'],
-    desc:'获取难度最低的A级宠物。160HP+130防御使它成为顶级肉盾。寄生种子+剧毒+光合作用的消耗组合，在PVP中让对手绝望。是入门PVP必练的低成本选择。'
-  },
-  huoshen: {
-    id:'huoshen',name:'火神',icon:'🔥',tier:'A',
-    type:'火系',rarity:'稀有',role:'爆发输出',
-    tags:['稀有品质','火系','PVE主力'],
-    color:'rgba(249,115,22,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:120,atk:140,spa:100,spd:95,spe:120,atk2:140,def:85},
-    skills:[
-      {icon:'🔥',bg:'rgba(249,115,22,0.15)',name:'火焰拳',desc:'火系物理攻击，有20%几率灼伤。稳定物理输出。',meta:'威力 85 · PP 12'},
-      {icon:'💥',bg:'rgba(249,115,22,0.15)',name:'大字爆',desc:'火系特殊攻击，威力巨大但命中率85%。极限爆发。',meta:'威力 120 · PP 5'},
-      {icon:'💪',bg:'rgba(239,68,68,0.15)',name:'健美',desc:'提升攻击和防御各1级。推图强化核心。',meta:'变化技 · PP 10'},
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'雷电拳',desc:'电系物理攻击，补充对水系打击面。',meta:'威力 75 · PP 12'}
-    ],
-    evolution:[{icon:'🔥',name:'火花',lvl:'初始宠物'},{icon:'🔥',name:'烈焰火',lvl:'Lv.30 进化'},{icon:'🔥',name:'火神',lvl:'火焰之心进化'}],
-    obtain:['初始三宠之一','火焰之心：火系道馆挑战掉落','火山口探索获得'],
-    desc:'初始三宠之一，140物攻+健美使其推图效率极高。大字爆提供极限爆发，雷电拳补充克制面。是新手最推荐的初始宠物，PVE表现远超PVP。'
-  },
-  bingjing: {
-    id:'bingjing',name:'冰晶古齿虎',icon:'❄️',tier:'A',
-    type:'冰系',rarity:'稀有',role:'天气核心',
-    tags:['稀有品质','冰系','PVP T1','天气队'],
-    color:'rgba(103,232,249,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:125,atk:135,spa:70,spd:115,spe:120,atk2:135,def:110},
-    skills:[
-      {icon:'❄️',bg:'rgba(103,232,249,0.15)',name:'冰柱坠击',desc:'冰系物理攻击，有30%几率使目标畏缩。先发压制。',meta:'威力 85 · PP 12'},
-      {icon:'🧊',bg:'rgba(147,197,253,0.15)',name:'冰雹',desc:'冰系变化技，5回合冰雹天气。冰系宠物每回合不损血。',meta:'变化技 · PP 8'},
-      {icon:'👊',bg:'rgba(239,68,68,0.15)',name:'劈瓦',desc:'武系物理攻击，打破光墙/反射盾。补充打击面。',meta:'威力 75 · PP 12'},
-      {icon:'🦷',bg:'rgba(168,162,158,0.15)',name:'冰牙',desc:'冰系物理攻击，有20%冰冻+20%畏缩。双控神技。',meta:'威力 65 · PP 15'}
-    ],
-    evolution:[{icon:'🐯',name:'冰牙虎',lvl:'初始形态'},{icon:'❄️',name:'冰晶古齿虎',lvl:'Lv.38 进化'}],
-    obtain:['极寒冰原捕捉冰牙虎','冰雪祭活动奖励','冰系道馆挑战低概率掉落'],
-    desc:'冰雹天气队核心。冰雹天气下每回合不损血，配合冰牙的双控效果，可以无限压制对手。135物攻提供了不俗的输出能力。'
-  },
-  youying: {
-    id:'youying',name:'幽影',icon:'👻',tier:'B',
-    type:'幽灵系',rarity:'普通',role:'功能对策',
-    tags:['普通品质','幽灵系','PVP T2'],
-    color:'rgba(192,132,252,0.1)',border:'#3b82f6',glow:'rgba(59,130,246,0.15)',
-    stats:{hp:105,atk:60,spa:140,spd:130,spe:110,atk2:60,def:85},
-    skills:[
-      {icon:'👻',bg:'rgba(192,132,252,0.15)',name:'暗影球',desc:'幽灵系特殊攻击，有20%几率降低目标特防1级。',meta:'威力 80 · PP 12'},
-      {icon:'💀',bg:'rgba(192,132,252,0.15)',name:'诅咒',desc:'幽灵系变化技，自身损失50%HP，目标每回合损失25%HP。',meta:'变化技 · PP 5'},
-      {icon:'✨',bg:'rgba(236,72,153,0.15)',name:'精神强念',desc:'超能系特殊攻击，有15%几率降低目标特防。',meta:'威力 90 · PP 8'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'痛平分',desc:'普通系变化技，将双方HP平均分配。残血反杀利器。',meta:'变化技 · PP 15'}
-    ],
-    evolution:[{icon:'👻',name:'小幽灵',lvl:'初始形态'},{icon:'👻',name:'幽影',lvl:'Lv.30 进化'}],
-    obtain:['幽灵古堡夜晚捕捉小幽灵','万圣节限定活动','古堡探险任务奖励'],
-    desc:'功能型对策宠物。诅咒+痛平分的组合可以1换1带走任何天敌。140特攻+暗影球提供了基础输出，但脆皮身板需要保护。'
-  },
-  yanshi: {
-    id:'yanshi',name:'岩石巨人',icon:'🪨',tier:'B',
-    type:'石系',rarity:'普通',role:'肉盾对策',
-    tags:['普通品质','石系','PVE可用'],
-    color:'rgba(168,162,158,0.1)',border:'#3b82f6',glow:'rgba(59,130,246,0.15)',
-    stats:{hp:170,atk:120,spa:40,spd:130,spe:35,atk2:120,def:160},
-    skills:[
-      {icon:'🪨',bg:'rgba(168,162,158,0.15)',name:'岩石封锁',desc:'石系物理攻击，100%降低目标速度1级。控速兼备。',meta:'威力 65 · PP 12'},
-      {icon:'💪',bg:'rgba(239,68,68,0.15)',name:'健美',desc:'提升攻击和防御各1级。核心强化技。',meta:'变化技 · PP 10'},
-      {icon:'💥',bg:'rgba(249,115,22,0.15)',name:'地震',desc:'土系物理攻击，威力巨大。打击火、电、钢、毒。',meta:'威力 100 · PP 8'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'隐形岩',desc:'石系变化技，对方换宠时损失1/8HP。首发必备。',meta:'变化技 · PP 15'}
-    ],
-    evolution:[{icon:'🪨',name:'小石人',lvl:'初始形态'},{icon:'🪨',name:'岩石巨人',lvl:'Lv.35 进化'}],
-    obtain:['岩石山洞捕捉小石人','矿场探索奖励','全地图岩石区域均有分布'],
-    desc:'170HP+160防御=绝对肉盾。隐形岩是首发神技，健美+地震提供输出。速度只有35但配合岩石封锁可以一定程度上弥补。PVE抗伤首选。'
-  },
-  huangfeng: {
-    id:'huangfeng',name:'黄蜂后',icon:'🐝',tier:'B',
-    type:'虫系',rarity:'普通',role:'特攻手',
-    tags:['普通品质','虫系','PVP T2'],
-    color:'rgba(251,191,36,0.1)',border:'#3b82f6',glow:'rgba(59,130,246,0.15)',
-    stats:{hp:115,atk:55,spa:135,spd:110,spe:125,atk2:55,def:95},
-    skills:[
-      {icon:'🐛',bg:'rgba(251,191,36,0.15)',name:'虫鸣',desc:'虫系特殊攻击，声音类技能，无视替身。稳定输出。',meta:'威力 90 · PP 10'},
-      {icon:'🦋',bg:'rgba(236,72,153,0.15)',name:'蝶舞',desc:'虫系变化技，提升特攻、特防、速度各1级。全能强化。',meta:'变化技 · PP 15'},
-      {icon:'💨',bg:'rgba(147,197,253,0.15)',name:'空气斩',desc:'飞行系特殊攻击，有30%几率使目标畏缩。补充克制面。',meta:'威力 75 · PP 12'},
-      {icon:'☠️',bg:'rgba(192,132,252,0.15)',name:'毒菱',desc:'毒系变化技，对方换宠时中毒。配合消耗阵容。',meta:'变化技 · PP 15'}
-    ],
-    evolution:[{icon:'🐛',name:'幼虫',lvl:'初始形态'},{icon:'🐝',name:'黄蜂后',lvl:'Lv.28 进化'}],
-    obtain:['花海区域捕捉幼虫','蜂蜜树摇落获得','春日限定活动奖励'],
-    desc:'蝶舞是最强的单体强化技之一，特攻+特防+速度各+1级。125速度在虫系中名列前茅。虫鸣稳定输出，毒菱提供团队价值。缺点是被火、飞、岩等多属性克制。'
-  },
-
-  // ═══════════ 近期新宠 ═══════════
-  guangdi: {
-    id:'guangdi',name:'圣光迪莫',icon:'✨',tier:'S',
-    type:'光系',rarity:'传说',role:'全能辅助',
-    tags:['传说品质','光系','PVP T0'],
-    color:'rgba(250,204,21,0.1)',border:'#f59e0b',glow:'rgba(245,158,11,0.2)',
-    stats:{hp:155,atk:85,spa:140,spd:145,spe:120,atk2:85,def:125},
-    skills:[
-      {icon:'✨',bg:'rgba(250,204,21,0.15)',name:'圣光裁决',desc:'光系特殊攻击，对暗系伤害翻倍。必中。',meta:'威力 95 · PP 10'},
-      {icon:'💫',bg:'rgba(250,204,21,0.15)',name:'光之庇护',desc:'光系变化技，全队3回合免疫异常状态。S级辅助技。',meta:'变化技 · PP 8'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'神圣护盾',desc:'自身获得最大HP50%的护盾，持续3回合。',meta:'变化技 · PP 8'},
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'光速闪击',desc:'光系特殊攻击，先制度+2。无视替身。',meta:'威力 65 · PP 15'}
-    ],
-    evolution:[{icon:'✨',name:'光之精灵',lvl:'初始形态'},{icon:'✨',name:'圣光迪莫',lvl:'光之石进化'}],
-    obtain:['光之圣殿挑战获得光之精灵','光之石：光系副本掉落','"光与暗的交汇"限时活动（已结束）'],
-    desc:'当前版本最强辅助。光之庇护是全队免疫异常的S级技能，神圣护盾提供巨额生存能力。搭配任意输出核心即可组成T0阵容。155HP+145特防使其极其难以被秒杀。'
-  },
-  andi: {
-    id:'andi',name:'暗黑迪莫',icon:'🌑',tier:'A',
-    type:'暗系',rarity:'史诗',role:'特攻打手',
-    tags:['史诗品质','暗系','PVP T1'],
-    color:'rgba(139,92,246,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:130,atk:70,spa:155,spd:115,spe:130,atk2:70,def:105},
-    skills:[
-      {icon:'🌑',bg:'rgba(139,92,246,0.15)',name:'暗黑爆破',desc:'暗系特殊攻击，高暴击率。暴击时无视特防提升。',meta:'威力 90 · PP 10'},
-      {icon:'👁️',bg:'rgba(192,132,252,0.15)',name:'暗夜凝视',desc:'暗系变化技，目标特防降低2级+50%几率畏缩。',meta:'变化技 · PP 8'},
-      {icon:'💀',bg:'rgba(139,92,246,0.15)',name:'暗影侵蚀',desc:'暗系特殊攻击，每回合损失目标最大HP的1/8，持续4回合。',meta:'威力 70 · PP 8'},
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'恶之波动',desc:'恶系特殊攻击，有30%几率使目标畏缩。补盲。',meta:'威力 80 · PP 12'}
-    ],
-    evolution:[{icon:'🌑',name:'暗之精灵',lvl:'初始形态'},{icon:'🌑',name:'暗黑迪莫',lvl:'暗之石进化'}],
-    obtain:['暗黑城堡挑战获得暗之精灵','暗之石：暗系副本掉落','与圣光迪莫互为对应宠物'],
-    desc:'圣光迪莫的暗影版本。155特攻+暗黑爆破高暴击组合输出爆炸。暗夜凝视的降防+畏缩双控效果极其恶心。' 
-  },
-  jiulong: {
-    id:'jiulong',name:'九天龙尊',icon:'🐲',tier:'S',
-    type:'龙系',rarity:'传说',role:'天气核心',
-    tags:['传说品质','龙系','PVP T0'],
-    color:'rgba(245,158,11,0.1)',border:'#f59e0b',glow:'rgba(245,158,11,0.2)',
-    stats:{hp:140,atk:145,spa:110,spd:110,spe:115,atk2:145,def:115},
-    skills:[
-      {icon:'🌩️',bg:'rgba(245,158,11,0.15)',name:'龙神风暴',desc:'龙系物理攻击，雨天/晴天威力翻倍。天气队终极技能。',meta:'威力 110 · PP 5'},
-      {icon:'🐉',bg:'rgba(139,92,246,0.15)',name:'龙尊领域',desc:'龙系变化技，5回合龙系技能威力×1.5。切换保留。',meta:'变化技 · PP 8'},
-      {icon:'💪',bg:'rgba(239,68,68,0.15)',name:'龙威',desc:'降低对方全体攻击和特攻各1级。开场压制神技。',meta:'变化技 · PP 10'},
-      {icon:'🔥',bg:'rgba(249,115,22,0.15)',name:'龙焰',desc:'龙系特殊攻击，50%几率灼伤。双刀补盲技能。',meta:'威力 85 · PP 10'}
-    ],
-    evolution:[{icon:'🐉',name:'幼龙尊',lvl:'初始形态'},{icon:'🐲',name:'九天龙尊',lvl:'九天之证进化'}],
-    obtain:['九天龙域顶层挑战','九天之证：龙系天梯赛季奖励','"龙神降临"年度限定活动'],
-    desc:'天气队的绝对核心。龙神风暴在天气下威力翻倍至220，配合龙尊领域×1.5加成毁天灭地。龙威开场压制能力独一档。'
-  },
-  bose: {
-    id:'bose',name:'海皇波塞冬',icon:'🔱',tier:'A',
-    type:'水系',rarity:'史诗',role:'雨天核心',
-    tags:['史诗品质','水系','天气队'],
-    color:'rgba(56,189,248,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:145,atk:75,spa:148,spd:135,spe:98,atk2:75,def:120},
-    skills:[
-      {icon:'🌊',bg:'rgba(56,189,248,0.15)',name:'海啸',desc:'水系特殊攻击，雨天威力×1.5。全体攻击。必中。',meta:'威力 100 · PP 5'},
-      {icon:'💧',bg:'rgba(56,189,248,0.15)',name:'深海领域',desc:'水系变化技，5回合雨天+每回合回复1/16HP。核心天气技。',meta:'变化技 · PP 8'},
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'雷电',desc:'电系特殊攻击，雨天必中。120威力。',meta:'威力 120 · PP 8'},
-      {icon:'🛡️',bg:'rgba(91,141,239,0.15)',name:'海洋之盾',desc:'水系变化技，HP低于50%时回复至满血。一次性。',meta:'变化技 · PP 3'}
-    ],
-    evolution:[{icon:'🐚',name:'海之精灵',lvl:'初始形态'},{icon:'🔱',name:'海皇波塞冬',lvl:'海皇之证进化'}],
-    obtain:['深海神殿挑战','海皇之证：水系道馆最终挑战','"海洋霸主"限时活动'],
-    desc:'雨天队新核心。深海领域同时开启雨天+持续回复，海啸+雷电在雨天下的输出堪称恐怖。海洋之盾提供一次满血复活。'
-  },
-  hapu: {
-    id:'hapu',name:'哈普洛斯',icon:'🧛',tier:'S',
-    type:'暗系/冰系',rarity:'传说',role:'双刀战士',
-    tags:['传说品质','暗系','冰系','PVP T0'],
-    color:'rgba(139,92,246,0.1)',border:'#f59e0b',glow:'rgba(245,158,11,0.2)',
-    stats:{hp:138,atk:148,spa:142,spd:118,spe:105,atk2:148,def:112},
-    skills:[
-      {icon:'❄️',bg:'rgba(103,232,249,0.15)',name:'极寒深渊',desc:'冰系物理攻击，100%冰冻目标1回合。必中。',meta:'威力 85 · PP 8'},
-      {icon:'🌑',bg:'rgba(139,92,246,0.15)',name:'暗夜降临',desc:'暗系特殊攻击，消除目标所有能力提升后造成伤害。',meta:'威力 90 · PP 10'},
-      {icon:'🩸',bg:'rgba(239,68,68,0.15)',name:'鲜血转换',desc:'造成伤害的50%转化为自身HP。双攻通用。',meta:'威力 80 · PP 12'},
-      {icon:'💪',bg:'rgba(139,92,246,0.15)',name:'黑暗强化',desc:'暗系变化技，攻击+特攻各提升2级，损失1/4HP。',meta:'变化技 · PP 8'}
-    ],
-    evolution:[{icon:'🦇',name:'暗影幼兽',lvl:'初始形态'},{icon:'🧛',name:'哈普洛斯',lvl:'暗冰之证进化'}],
-    obtain:['暗影冰窟深处挑战','暗冰之证：暗系+冰系双道馆通关','"暗夜君王"年度限定活动'],
-    desc:'双刀流天花板。148物攻+142特攻使其无论物攻还是特攻路线都能打出恐怖伤害。极寒深渊的100%冰冻是无解控场技。黑暗强化牺牲1/4HP换双攻+2级，爆发力无与伦比。'
-  },
-  lidong: {
-    id:'lidong',name:'立冬',icon:'🌨️',tier:'B',
-    type:'冰系',rarity:'稀有',role:'首发控场',
-    tags:['稀有品质','冰系','PVP T2'],
-    color:'rgba(103,232,249,0.1)',border:'#3b82f6',glow:'rgba(59,130,246,0.15)',
-    stats:{hp:110,atk:80,spa:98,spd:85,spe:140,atk2:80,def:78},
-    skills:[
-      {icon:'❄️',bg:'rgba(103,232,249,0.15)',name:'冰封世界',desc:'冰系变化技，使目标冰冻2回合（不可替换解除）。',meta:'变化技 · PP 5'},
-      {icon:'💨',bg:'rgba(147,197,253,0.15)',name:'寒风',desc:'冰系特殊攻击，先制度+1。冰冻状态下威力翻倍。',meta:'威力 60 · PP 15'},
-      {icon:'⏱️',bg:'rgba(192,132,252,0.15)',name:'时间冻结',desc:'冰系变化技，双方5回合内无法使用变化技能。速攻队压制技。',meta:'变化技 · PP 5'},
-      {icon:'🔮',bg:'rgba(236,72,153,0.15)',name:'预知未来',desc:'超能系特殊攻击，2回合后自动释放。无视保护。',meta:'威力 120 · PP 8'}
-    ],
-    evolution:[{icon:'❄️',name:'小雪灵',lvl:'初始形态'},{icon:'🌨️',name:'立冬',lvl:'Lv.40 进化'}],
-    obtain:['冬季限定活动捕捉小雪灵（11月-1月）','雪人谷探索获取','节气系列宠物之一'],
-    desc:'节气系列宠物。140速度+冰封世界2回合冰冻使其成为顶级首发控场手。时间冻结可以完全封锁对方的变化技能战术。'
-  },
-  qinglong: {
-    id:'qinglong',name:'东圣兽青龙',icon:'🐉',tier:'A',
-    type:'龙系/电系',rarity:'史诗',role:'速攻手',
-    tags:['史诗品质','龙系','电系','PVP T1'],
-    color:'rgba(74,222,128,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:120,atk:130,spa:105,spd:100,spe:148,atk2:130,def:95},
-    skills:[
-      {icon:'⚡',bg:'rgba(250,204,21,0.15)',name:'青龙闪电',desc:'电系物理攻击，100%麻痹目标。龙系宠物使用威力×1.5。',meta:'威力 90 · PP 10'},
-      {icon:'🐉',bg:'rgba(74,222,128,0.15)',name:'龙尾',desc:'龙系物理攻击，强制目标换宠。先制度-6（后手）。',meta:'威力 60 · PP 8'},
-      {icon:'💨',bg:'rgba(147,197,253,0.15)',name:'神速',desc:'普通系物理攻击，先制度+2。速度比对方快时威力翻倍。',meta:'威力 40 · PP 20'},
-      {icon:'🌿',bg:'rgba(74,222,128,0.15)',name:'木之吐息',desc:'草系特殊攻击，回复造成伤害50%的HP。续航技。',meta:'威力 80 · PP 10'}
-    ],
-    evolution:[{icon:'🐍',name:'龙蛇',lvl:'初始形态'},{icon:'🐉',name:'东圣兽青龙',lvl:'四象之证进化'}],
-    obtain:['东方圣殿挑战','四象之证：完成四圣兽系列任务','"四象降临"年度活动'],
-    desc:'四圣兽之一。148速度+青龙闪电100%麻痹是极强的速攻控场组合。龙尾的强制换宠在BP中可打乱对方节奏。神速先制收割能力一流。'
-  },
-  baihu: {
-    id:'baihu',name:'西圣兽白虎',icon:'🐯',tier:'A',
-    type:'武系/钢系',rarity:'史诗',role:'暴力物攻',
-    tags:['史诗品质','武系','钢系','PVP T1'],
-    color:'rgba(168,162,158,0.1)',border:'#8b5cf6',glow:'rgba(139,92,246,0.2)',
-    stats:{hp:135,atk:162,spa:55,spd:100,spe:118,atk2:162,def:130},
-    skills:[
-      {icon:'🐯',bg:'rgba(239,68,68,0.15)',name:'虎啸山林',desc:'武系物理攻击，50%几率使目标畏缩。先制度+1。',meta:'威力 85 · PP 10'},
-      {icon:'⚔️',bg:'rgba(168,162,158,0.15)',name:'钢爪',desc:'钢系物理攻击，高暴击率。命中后自身攻击+1级。',meta:'威力 75 · PP 12'},
-      {icon:'💪',bg:'rgba(239,68,68,0.15)',name:'健美',desc:'武系变化技，攻击+防御各提升1级。稳扎稳打。',meta:'变化技 · PP 10'},
-      {icon:'🛡️',bg:'rgba(168,162,158,0.15)',name:'金刚体',desc:'钢系变化技，3回合内免疫物理攻击伤害。神技。',meta:'变化技 · PP 3'}
-    ],
-    evolution:[{icon:'🐱',name:'幼虎',lvl:'初始形态'},{icon:'🐯',name:'西圣兽白虎',lvl:'四象之证进化'}],
-    obtain:['西方圣殿挑战','四象之证：完成四圣兽系列任务','"四象降临"年度活动'],
-    desc:'四圣兽之一。162物攻冠绝所有非传说宠物。金刚体3回合物理免疫是不讲道理的防御技。钢爪叠攻+虎啸收割的循环极其流畅。130防御提供了优秀的站场能力。'
   }
 };
 
-// ═══════════ 渲染 ═══════════
+// ═══════════ slug 映射：id → wiki key ═══════════
+const SLUG_MAP = {
+  shenglong:'圣龙阿布', youlan:'幽兰雪魅', yiwang:'翼王',
+  wudou:'武斗酷猫', guangdi:'圣光迪莫', jiulong:'九天龙尊', hapu:'哈普洛斯',
+  shuiling:'水灵', pili:'霹雳雷球', qili:'奇丽草', huoshen:'火神',
+  bingjing:'冰晶古齿虎', andi:'暗黑迪莫', bose:'海皇波塞冬',
+  qinglong:'东圣兽青龙', baihu:'西圣兽白虎',
+  youying:'幽影', yanshi:'岩石巨人', huangfeng:'黄蜂后', lidong:'立冬'
+};
+
+// ═══════════ wiki 原始数据（从 data/pets.json 加载） ═══════════
+let wikiPets = {};
+
+const EMOJI_MAP = {
+  普通:'⚪', 火:'🔥', 水:'💧', 草:'🌿', 电:'⚡', 龙:'🐉',
+  冰:'❄️', 武:'👊', 石:'🪨', 翼:'🕊️', 幽灵:'👻', 超能:'🧠',
+  虫:'🐛', 恶:'😈', 土:'🏔️', 钢:'⚙️', 光:'✨', 暗:'🌑'
+};
+
+const ATTR_COLORS = {
+  普通:'rgba(148,163,184,0.15)', 火:'rgba(249,115,22,0.15)', 水:'rgba(56,189,248,0.15)',
+  草:'rgba(74,222,128,0.15)', 电:'rgba(250,204,21,0.15)', 龙:'rgba(139,92,246,0.15)',
+  冰:'rgba(103,232,249,0.15)', 武:'rgba(239,68,68,0.15)', 石:'rgba(168,162,158,0.15)',
+  翼:'rgba(147,197,253,0.15)', 幽灵:'rgba(192,132,252,0.15)', 超能:'rgba(236,72,153,0.15)',
+  虫:'rgba(251,191,36,0.15)', 恶:'rgba(139,92,246,0.15)', 土:'rgba(180,83,9,0.15)',
+  钢:'rgba(156,163,175,0.15)', 光:'rgba(250,204,21,0.15)', 暗:'rgba(75,75,75,0.15)'
+};
+
+function makeSlug(name) {
+  return (name || '').toLowerCase().replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+}
+
+function wikiToStats(pet) {
+  return {
+    hp:  parseInt(pet['生命']) || 0,
+    atk: parseInt(pet['物攻']) || 0,
+    def: parseInt(pet['物防']) || 0,
+    spa: parseInt(pet['魔攻']) || 0,
+    spd: parseInt(pet['魔防']) || 0,
+    spe: parseInt(pet['速度']) || 0
+  };
+}
+
+function wikiToSkills(pet) {
+  const skillStr = pet['技能'] || '';
+  if (!skillStr) return [];
+  return skillStr.split(',').filter(Boolean).slice(0, 6).map(name => ({
+    icon: '⚡',
+    bg: 'rgba(139,92,246,0.15)',
+    name: name.trim(),
+    desc: '—',
+    meta: '—'
+  }));
+}
+
+function wikiToPet(id, wikiPet) {
+  const attr = wikiPet['主属性'] || '普通';
+  return {
+    id,
+    name: wikiPet['精灵名称'] || wikiPet.name || id,
+    icon: EMOJI_MAP[attr] || '🐾',
+    tier: 'B',
+    type: attr + '系',
+    rarity: wikiPet['稀有度'] || '—',
+    role: wikiPet['特性'] || '—',
+    tags: [attr + '系', wikiPet['稀有度'] || ''].filter(Boolean),
+    color: ATTR_COLORS[attr] || 'rgba(148,163,184,0.15)',
+    border: '#888',
+    glow: 'rgba(136,136,136,0.2)',
+    stats: wikiToStats(wikiPet),
+    skills: wikiToSkills(wikiPet),
+    evolution: [],
+    obtain: wikiPet['分布地区'] ? wikiPet['分布地区'].split(' / ').map(s => s.trim()).filter(Boolean) : ['分布地区未知'],
+    desc: wikiPet['精灵描述'] || '数据来源于 bilibili wiki。'
+  };
+}
+
 function getPetId() {
-  const p = new URLSearchParams(window.location.search);
-  return p.get('id') || 'shenglong';
+  return new URLSearchParams(window.location.search).get('id') || 'shenglong';
 }
 
 function renderPet(pet) {
@@ -503,13 +304,17 @@ function renderPet(pet) {
       ${pet.skills.map(s => `
         <div class="skill-card">
           <div class="skill-icon" style="background:${s.bg}">${s.icon}</div>
-          <div class="skill-info"><div class="skill-name">${s.name}</div><div class="skill-desc">${s.desc}</div></div>
-          <div class="skill-meta">${s.meta.split('·').map(m=>`<div>${m.trim()}</div>`).join('')}</div>
+          <div class="skill-info">
+            <div class="skill-name">${s.name}</div>
+            <div class="skill-desc">${s.desc}</div>
+          </div>
+          <div class="skill-meta">${s.meta}</div>
         </div>
       `).join('')}
     </div>
   </section>
 
+  ${pet.evolution && pet.evolution.length > 0 ? `
   <section class="stat-section">
     <h2>🔄 进化路线</h2>
     <div class="evo-chain">
@@ -518,19 +323,22 @@ function renderPet(pet) {
         <div class="evo-step"><span class="evo-icon">${e.icon}</span><div class="evo-name">${e.name}</div><div class="evo-lvl">${e.lvl}</div></div>
       `).join('')}
     </div>
-  </section>
+  </section>` : ''}
 
   <section class="stat-section">
     <h2>📦 获取方式</h2>
     <div class="obtain-list">
-      ${pet.obtain.map(o => `<div class="obtain-item"><span class="dot"></span><div>${o}</div></div>`).join('')}
+      ${pet.obtain.map(o => `<div class="obtain-item">📍 ${o}</div>`).join('')}
     </div>
   </section>
 
   <section class="other-pets">
     <h2>🔄 其他宠物</h2>
     <div class="other-grid">
-      ${Object.values(pets).filter(p=>p.id!==pet.id).slice(0,12).map(p => `
+      ${Object.values(Object.assign({}, PREMIUM_PETS, wikiPets))
+        .filter(p => p.id !== pet.id)
+        .slice(0, 12)
+        .map(p => `
         <a class="other-link" href="pet.html?id=${p.id}">
           <span class="icon">${p.icon}</span>
           <span class="name">${p.name}</span>
@@ -542,7 +350,39 @@ function renderPet(pet) {
   document.getElementById('petContent').innerHTML = html;
 }
 
-renderPet(pets[getPetId()]);
+async function init() {
+  const id = getPetId();
+
+  // Try wiki data first
+  try {
+    const resp = await fetch('./data/pets.json?t=' + Date.now(), { cache: 'no-store' });
+    if (resp.ok) {
+      const data = await resp.json();
+      wikiPets = data.pets || {};
+    }
+  } catch(e) { console.warn('Failed to load wiki pets:', e); }
+
+  // Priority: PREMIUM_PETS[id] > wikiPets[wikiTitleMatch] > wikiPets[id]
+  let pet = PREMIUM_PETS[id];
+  if (!pet && SLUG_MAP[id] && wikiPets[SLUG_MAP[id]]) {
+    pet = wikiToPet(id, wikiPets[SLUG_MAP[id]]);
+  } else if (!pet && wikiPets[id]) {
+    pet = wikiToPet(id, wikiPets[id]);
+  } else if (!pet) {
+    // Try fuzzy: search wikiPets by name slug
+    const slug = makeSlug(id);
+    for (const key of Object.keys(wikiPets)) {
+      if (makeSlug(key) === slug || makeSlug(wikiPets[key].name) === slug) {
+        pet = wikiToPet(key, wikiPets[key]);
+        break;
+      }
+    }
+  }
+
+  renderPet(pet);
+}
+
+init();
 </script>
 <!-- Pagefind Search -->
 <script src="pagefind/pagefind-ui.js"></script>
