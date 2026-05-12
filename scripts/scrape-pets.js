@@ -154,7 +154,8 @@ async function scrapePets() {
   console.log('\nFetching pet details...');
   const pets = {};
   const errors = [];
-  const batchSize = 10;
+  const batchSize = 3;   // 小批次避免触发限流
+  const delay = ms => new Promise(r => setTimeout(r, ms));
 
   for (let i = 0; i < petNames.length; i += batchSize) {
     const batch = petNames.slice(i, i + batchSize);
@@ -179,6 +180,7 @@ async function scrapePets() {
 
     const done = Math.min(i + batchSize, petNames.length);
     process.stdout.write(`\r  Progress: ${done}/${petNames.length} (${((done/petNames.length)*100).toFixed(0)}%)`);
+    await delay(300);   // 批次间延迟，降低限流风险
   }
   console.log(`\n  Done! ${Object.keys(pets).length} pets scraped, ${errors.length} errors`);
 
