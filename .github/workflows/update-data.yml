@@ -29,24 +29,16 @@ jobs:
       - name: 运行爬虫
         run: node scripts/scrape-pets.js
 
-      - name: 检查数据变更
-        id: changed
+      - name: 检查并提交更新
         run: |
-          git diff --stat data/pets.json >> $GITHUB_OUTPUT
-          echo "changed=$(git diff --name-only data/pets.json | wc -l)" >> $GITHUB_OUTPUT
-
-      - name: 提交更新
-        if: steps.changed.outputs.changed == '1'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/pets.json
-          git commit -m "🤖 自动更新宠物数据 $(date -u '+%Y-%m-%d %H:%M UTC')"
-          git push
-
-      - name: 发布日报（无变更时跳过）
-        if: steps.changed.outputs.changed == '1'
-        run: |
-          # 提取本次更新的宠物数量和关键信息
-          COUNT=$(node -e "const d=require('./data/pets.json'); console.log(d.totalCount)")
-          echo "更新完成，共 ${COUNT} 只宠物数据"
+          # 判断 pets.json 是否有变化
+          if ! git diff --quiet data/pets.json; then
+            echo "发现数据更新，提交..."
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/pets.json
+            git commit -m "🤖 自动更新宠物数据 $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git push
+          else
+            echo "数据无变化，跳过提交"
+          fi
