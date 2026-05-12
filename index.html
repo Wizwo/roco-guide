@@ -61,6 +61,21 @@
 }
 </script>
 
+<!-- Pagefind CSS -->
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<style>
+/* Pagefind Dark Theme Override */
+.pagefind-ui { --pagefind-ui-primary: #d4a745; --pagefind-ui-text: #f0f0f5; --pagefind-ui-background: #11141d; --pagefind-ui-border: rgba(255,255,255,0.08); --pagefind-ui-font: 'Inter','Noto Sans SC',sans-serif; }
+.pagefind-ui__search-input { background: rgba(255,255,255,0.03) !important; border: 1px solid rgba(255,255,255,0.08) !important; color: #f0f0f5 !important; border-radius: 9999px !important; padding: 8px 14px 8px 36px !important; }
+.pagefind-ui__search-input:focus { border-color: #8b6ce0 !important; box-shadow: 0 0 40px rgba(139,108,224,0.15) !important; }
+.pagefind-ui__result { background: #11141d !important; border-color: rgba(255,255,255,0.05) !important; }
+.pagefind-ui__result-title { color: #f0f0f5 !important; }
+.pagefind-ui__result-excerpt { color: #6b7084 !important; }
+.nav-search-small .pagefind-ui { width: 200px; }
+.nav-search-small .pagefind-ui__search-input { font-size: 12px; padding: 6px 10px 6px 30px; }
+</style>
+<!-- Baidu Analytics (placeholder — replace with your ID) -->
+<script>var _hmt=_hmt||[];(function(){var hm=document.createElement("script");hm.src="https://hm.baidu.com/hm.js?YOUR_BAIDU_ID";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm,s);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -479,13 +494,11 @@ body::after {
 <!-- ═══ NAV ═══ -->
 <nav class="nav" role="navigation" aria-label="主导航">
   <div class="nav-inner">
-    <a href="/" class="nav-brand" aria-label="洛克王国攻略站首页">
+    <a href="index.html" class="nav-brand" aria-label="洛克王国攻略站首页">
       <div class="nav-logo-icon">🔮</div>
       <span class="nav-title">洛克攻略站</span>
     </a>
-    <div class="nav-search" role="search">
-      <input type="text" placeholder="搜索宠物、攻略、属性..." aria-label="站内搜索">
-    </div>
+    <div class="nav-search" role="search" id="search"></div>
     <ul class="nav-links" role="menubar">
       <li role="none"><a href="#tier" role="menuitem" class="active">天梯榜</a></li>
       <li role="none"><a href="#attribute" role="menuitem">属性克制</a></li>
@@ -521,7 +534,7 @@ body::after {
   </div>
 </header>
 
-<main class="container">
+<main class="container" data-pagefind-body>
 
   <!-- ═══ QUICK ═══ -->
   <section class="section" id="quick" aria-labelledby="quick-heading">
@@ -624,6 +637,12 @@ body::after {
 
 <button class="back-top" id="backTop" title="回到顶部" aria-label="回到顶部">↑</button>
 
+<!-- Pagefind Search -->
+<script src="/pagefind/pagefind-ui.js"></script>
+<script>
+new PagefindUI({ element: "#search", showSubResults: true, showImages: false });
+</script>
+
 <script>
 // ── Back to Top ──
 const backBtn = document.getElementById('backTop');
@@ -666,11 +685,6 @@ window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-});
-
-// ── Search ──
-document.querySelector('.nav-search input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') { this.placeholder = '搜索功能即将上线...'; setTimeout(() => { this.placeholder = '搜索宠物、攻略、属性...'; }, 2000); }
 });
 
 // ── Attribute Data ──
