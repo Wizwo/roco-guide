@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圣龙阿布 — 宠物详情 | 洛克王国攻略站</title>
+<meta name="description" content="洛克王国圣龙阿布宠物详情：龙系传说宠物，S级天梯排名。查看属性、技能、进化路线、获取方式、培养推荐。">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://roco.wiki/pet.html">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta property="og:title" content="圣龙阿布 — 宠物详情 | 洛克王国攻略站">
+<meta property="og:description" content="龙系·传说·S级天梯。全能核心宠物，PVP T0。查看完整属性、技能、进化路线。">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"圣龙阿布 · 宠物详情","description":"洛克王国龙系传说宠物圣龙阿布的完整数据","author":{"@type":"Organization","name":"洛克王国攻略站"},"about":{"@type":"VideoGame","name":"洛克王国"}}
+</script>
+<style>
+:root {
+  --bg-deepest:#06080c;--bg-surface:#11141d;--bg-elevated:#181b26;
+  --bg-glass:rgba(255,255,255,0.03);--bg-glass-hover:rgba(255,255,255,0.06);
+  --text-primary:#f0f0f5;--text-secondary:#b0b5c4;--text-muted:#6b7084;--text-dim:#4a4e5c;
+  --border-subtle:rgba(255,255,255,0.05);--border-std:rgba(255,255,255,0.08);--border-visible:rgba(255,255,255,0.12);
+  --accent-gold:#d4a745;--accent-gold-hover:#e8c560;--accent-gold-bg:rgba(212,167,69,0.1);
+  --accent-purple:#8b6ce0;--accent-purple-bg:rgba(139,108,224,0.1);
+  --accent-blue:#5b8def;
+  --radius:8px;--radius-md:12px;--radius-pill:9999px;--radius-full:50%;
+  --font-sans:'Inter','Noto Sans SC',system-ui,sans-serif;
+  --font-serif:'Noto Serif SC',serif;
+  --shadow-md:0 4px 12px rgba(0,0,0,0.4);
+  --transition:0.2s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);background:var(--bg-deepest);color:var(--text-primary);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+body::before,body::after{content:'';position:fixed;border-radius:50%;z-index:0;pointer-events:none;filter:blur(120px);opacity:0.4}
+body::before{width:600px;height:600px;background:radial-gradient(circle,rgba(139,108,224,0.15),transparent 70%);top:-200px;left:-100px}
+body::after{width:500px;height:500px;background:radial-gradient(circle,rgba(212,167,69,0.1),transparent 70%);bottom:-200px;right:-100px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,13,20,0.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border-subtle)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.nav-logo-icon{width:34px;height:34px;border-radius:6px;background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(139,108,224,0.3)}
+.nav-title{font-family:var(--font-serif);font-size:18px;font-weight:700;color:var(--text-primary)}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:7px 14px;border-radius:var(--radius-pill);font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:var(--transition)}
+.nav-links a:hover{color:var(--accent-gold);background:var(--accent-gold-bg)}
+.nav-back{font-size:13px;color:var(--text-muted);text-decoration:none;padding:7px 14px;border-radius:var(--radius-pill);transition:var(--transition)}
+.nav-back:hover{color:var(--text-primary);background:var(--bg-glass)}
+
+/* Container */
+.container{max-width:960px;margin:0 auto;padding:40px 24px;position:relative;z-index:1}
+.breadcrumb{font-size:12px;color:var(--text-dim);margin-bottom:32px}
+.breadcrumb a{color:var(--accent-gold);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* Pet Header */
+.pet-header{display:flex;gap:32px;align-items:flex-start;margin-bottom:48px;flex-wrap:wrap}
+.pet-avatar-large{
+  width:120px;height:120px;border-radius:var(--radius-md);font-size:64px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  background:rgba(245,158,11,0.1);border:3px solid #f59e0b;
+  box-shadow:0 0 40px rgba(245,158,11,0.2);
+}
+.pet-meta{flex:1;min-width:280px}
+.pet-meta .tier-badge{display:inline-block;padding:4px 14px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:12px;font-weight:700;margin-bottom:12px}
+.pet-meta h1{font-family:var(--font-serif);font-size:36px;font-weight:900;margin-bottom:6px}
+.pet-meta .sub{font-size:15px;color:var(--text-secondary);margin-bottom:16px}
+.pet-tags-row{display:flex;gap:8px;flex-wrap:wrap}
+.pet-tags-row span{padding:5px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:500}
+.tag-type{background:rgba(139,92,246,0.15);color:var(--accent-purple)}
+.tag-role{background:rgba(91,141,239,0.15);color:var(--accent-blue)}
+.tag-rarity{background:rgba(245,158,11,0.15);color:#f59e0b}
+
+/* Stat Grid */
+.stat-section{margin-bottom:48px}
+.stat-section h2{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.stat-card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:18px}
+.stat-card .label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.stat-card .value{font-size:28px;font-weight:700;color:var(--accent-gold)}
+.stat-bar-track{height:8px;background:var(--bg-elevated);border-radius:4px;margin-top:8px;overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent-gold),var(--accent-gold-hover))}
+
+/* Skills */
+.skill-list{display:flex;flex-direction:column;gap:8px}
+.skill-card{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:16px;display:flex;align-items:center;gap:14px;transition:var(--transition)}
+.skill-card:hover{border-color:var(--border-visible)}
+.skill-icon{width:44px;height:44px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.skill-info{flex:1}
+.skill-name{font-size:15px;font-weight:600}
+.skill-desc{font-size:12px;color:var(--text-secondary);margin-top:2px}
+.skill-meta{font-size:11px;color:var(--text-dim);text-align:right;min-width:80px}
+.skill-meta div{margin-bottom:2px}
+
+/* Evolution */
+.evo-chain{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;padding:24px}
+.evo-step{text-align:center;padding:16px 20px;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius-md)}
+.evo-step .evo-icon{font-size:40px;display:block;margin-bottom:8px}
+.evo-step .evo-name{font-size:14px;font-weight:600}
+.evo-step .evo-lvl{font-size:11px;color:var(--text-dim)}
+.evo-arrow{font-size:24px;color:var(--text-muted)}
+
+/* Obtain */
+.obtain-list{display:flex;flex-direction:column;gap:8px}
+.obtain-item{background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;gap:12px}
+.obtain-item .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-gold);flex-shrink:0}
+
+/* Footer */
+.footer{text-align:center;padding:48px 24px;border-top:1px solid var(--border-subtle);color:var(--text-dim);font-size:12px;position:relative;z-index:1}
+.footer a{color:var(--accent-gold);text-decoration:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border-visible);border-radius:3px}
+
+@media(max-width:768px){
+  .pet-header{flex-direction:column;align-items:center;text-align:center}
+  .pet-tags-row{justify-content:center}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a href="/" class="nav-brand"><div class="nav-logo-icon">🔮</div><span class="nav-title">洛克攻略站</span></a>
+  <ul class="nav-links"><li><a href="index.html#tier">天梯榜</a></li><li><a href="index.html#attribute">属性克制</a></li><li><a href="index.html#guides">攻略库</a></li></ul>
+  <a href="index.html" class="nav-back">← 返回首页</a>
+</div></nav>
+
+<main class="container">
+  <nav class="breadcrumb"><a href="index.html">首页</a> / <a href="index.html#tier">天梯榜</a> / <span>圣龙阿布</span></nav>
+
+  <section class="pet-header">
+    <div class="pet-avatar-large">🐉</div>
+    <div class="pet-meta">
+      <div class="tier-badge">S 级</div>
+      <h1>圣龙阿布</h1>
+      <p class="sub">龙系 · 传说品质 · 全能核心打手</p>
+      <div class="pet-tags-row">
+        <span class="tag-rarity">传说品质</span>
+        <span class="tag-type">龙系</span>
+        <span class="tag-role">PVP T0</span>
+        <span class="tag-role">PVE T0</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <h2>📊 基础属性</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="label">生命 HP</div><div class="value">142</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:92%"></div></div></div>
+      <div class="stat-card"><div class="label">攻击 ATK</div><div class="value">158</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:98%"></div></div></div>
+      <div class="stat-card"><div class="label">防御 DEF</div><div class="value">128</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:78%"></div></div></div>
+      <div class="stat-card"><div class="label">特攻 SP.ATK</div><div class="value">95</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:55%"></div></div></div>
+      <div class="stat-card"><div class="label">特防 SP.DEF</div><div class="value">112</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:68%"></div></div></div>
+      <div class="stat-card"><div class="label">速度 SPD</div><div class="value">135</div><div class="stat-bar-track"><div class="stat-bar-fill" style="width:85%"></div></div></div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <h2>⚔️ 核心技能</h2>
+    <div class="skill-list">
+      <div class="skill-card"><div class="skill-icon" style="background:rgba(249,115,22,0.15)">🔥</div><div class="skill-info"><div class="skill-name">龙息</div><div class="skill-desc">龙系特殊攻击，有40%几率使目标灼伤。先制度+1。</div></div><div class="skill-meta"><div>威力 90</div><div>PP 10</div></div></div>
+      <div class="skill-card"><div class="skill-icon" style="background:rgba(139,92,246,0.15)">💫</div><div class="skill-info"><div class="skill-name">龙之舞</div><div class="skill-desc">提升自身攻击和速度各1级。核心强化技能。</div></div><div class="skill-meta"><div>变化技</div><div>PP 15</div></div></div>
+      <div class="skill-card"><div class="skill-icon" style="background:rgba(236,72,153,0.15)">⚡</div><div class="skill-info"><div class="skill-name">逆鳞</div><div class="skill-desc">龙系物理攻击，连续2-3回合攻击后自身混乱。超高爆发。</div></div><div class="skill-meta"><div>威力 120</div><div>PP 8</div></div></div>
+      <div class="skill-card"><div class="skill-icon" style="background:rgba(91,141,239,0.15)">🛡️</div><div class="skill-info"><div class="skill-name">龙鳞守护</div><div class="skill-desc">提升双防各1级，并回复最大生命值的25%。攻守兼备。</div></div><div class="skill-meta"><div>变化技</div><div>PP 8</div></div></div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <h2>🔄 进化路线</h2>
+    <div class="evo-chain">
+      <div class="evo-step"><span class="evo-icon">🐣</span><div class="evo-name">小龙阿布</div><div class="evo-lvl">初始形态</div></div>
+      <div class="evo-arrow">→</div>
+      <div class="evo-step"><span class="evo-icon">🐲</span><div class="evo-name">龙斗阿布</div><div class="evo-lvl">Lv.36 进化</div></div>
+      <div class="evo-arrow">→</div>
+      <div class="evo-step"><span class="evo-icon">🐉</span><div class="evo-name">圣龙阿布</div><div class="evo-lvl">龙之石进化</div></div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <h2>📦 获取方式</h2>
+    <div class="obtain-list">
+      <div class="obtain-item"><span class="dot"></span><div><strong>阿布的神秘礼物</strong> — 完成\"龙之试炼\"系列任务获得小龙阿布</div></div>
+      <div class="obtain-item"><span class="dot"></span><div><strong>龙之石</strong> — 龙系道馆挑战掉落 / 商城购买</div></div>
+      <div class="obtain-item"><span class="dot"></span><div><strong>限时活动</strong> — \"龙王归来\"活动期间直接获得（已结束）</div></div>
+      <div class="obtain-item"><span class="dot"></span><div><strong>交易行</strong> — 可与其他玩家交换（需双方在线）</div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer"><p>洛克王国攻略站 · <a href="index.html">返回首页</a></p><p style="margin-top:4px;color:var(--text-dim)">© 2026 Roco Kingdom Guide</p></footer>
+</body>
+</html>

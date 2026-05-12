@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ═══════════ SEO ═══════════ -->
+<title>洛克王国攻略站 — 宠物天梯榜 · 属性克制 · 培养攻略 · 活动日历</title>
+<meta name="description" content="洛克王国最全攻略站：300+宠物天梯排名、18属性克制表、新手到大师完整教程、稀有宠物分布地图、每日活动日历。小洛克们的魔法冒险指南。">
+<meta name="keywords" content="洛克王国,攻略,宠物,天梯榜,属性克制,洛克王国攻略,洛克王国宠物,洛克王国天梯,洛克王国新手">
+<meta name="author" content="Roco Kingdom Guide">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://roco.wiki/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<!-- Open Graph -->
+<meta property="og:title" content="洛克王国攻略站 — 一站式魔法冒险指南">
+<meta property="og:description" content="宠物天梯榜 · 属性克制表 · 培养攻略 · 活动日历。300+宠物收录，18属性完整关系，新手到大师全阶段覆盖。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://roco.wiki/">
+<meta property="og:image" content="https://roco.wiki/og-image.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="洛克王国攻略站">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="洛克王国攻略站">
+<meta name="twitter:description" content="宠物天梯榜 · 属性克制 · 培养攻略 · 活动日历">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "洛克王国攻略站",
+  "url": "https://roco.wiki/",
+  "description": "洛克王国玩家攻略社区 — 宠物图鉴、天梯排名、属性克制、培养教程、活动日历",
+  "inLanguage": "zh-CN",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://roco.wiki/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "洛克王国攻略站 · 首页",
+  "description": "洛克王国一站式攻略：宠物天梯榜、属性克制表、培养攻略、活动日历",
+  "about": {"@type": "VideoGame", "name": "洛克王国", "publisher": {"@type": "Organization", "name": "腾讯"}, "genre": "MMORPG", "playMode": "MultiPlayer"},
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {"@type": "Article", "name": "宠物天梯榜", "url": "https://roco.wiki/#tier"},
+      {"@type": "Article", "name": "属性克制表", "url": "https://roco.wiki/#attribute"},
+      {"@type": "Article", "name": "精选攻略", "url": "https://roco.wiki/#guides"}
+    ]
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   洛克王国攻略站 v3
+   改进：SEO · 多页面 · 响应式汉堡菜单 · Favicon
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --bg-deepest:    #06080c;
+  --bg-canvas:     #0a0d14;
+  --bg-surface:    #11141d;
+  --bg-elevated:   #181b26;
+  --bg-hover:      #1e2130;
+  --bg-glass:      rgba(255,255,255,0.03);
+  --bg-glass-hover: rgba(255,255,255,0.06);
+  --text-primary:  #f0f0f5;
+  --text-secondary:#b0b5c4;
+  --text-muted:    #6b7084;
+  --text-dim:      #4a4e5c;
+  --border-subtle: rgba(255,255,255,0.05);
+  --border-std:    rgba(255,255,255,0.08);
+  --border-visible:rgba(255,255,255,0.12);
+  --accent-gold:   #d4a745;
+  --accent-gold-hover:#e8c560;
+  --accent-gold-bg: rgba(212,167,69,0.1);
+  --accent-purple: #8b6ce0;
+  --accent-purple-bg:rgba(139,108,224,0.1);
+  --accent-blue:   #5b8def;
+  --radius:    8px;
+  --radius-md: 12px;
+  --radius-pill:9999px;
+  --radius-full:50%;
+  --font-sans:   'Inter','Noto Sans SC',system-ui,-apple-system,sans-serif;
+  --font-serif:  'Noto Serif SC','Noto Serif',serif;
+  --shadow-sm:   0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md:   0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 40px rgba(139,108,224,0.15);
+  --transition:  0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-deepest);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient glow */
+body::before, body::after {
+  content:''; position:fixed; border-radius:50%; z-index:0; pointer-events:none;
+  filter: blur(120px); opacity: 0.4;
+}
+body::before {
+  width:600px; height:600px;
+  background: radial-gradient(circle, rgba(139,108,224,0.15), transparent 70%);
+  top:-200px; left:-100px;
+}
+body::after {
+  width:500px; height:500px;
+  background: radial-gradient(circle, rgba(212,167,69,0.1), transparent 70%);
+  bottom:-200px; right:-100px;
+}
+
+/* ═══════ NAV ═══════ */
+.nav {
+  position:sticky; top:0; z-index:100;
+  background: rgba(10,13,20,0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom:1px solid var(--border-subtle);
+}
+.nav-inner {
+  max-width:1240px; margin:0 auto; padding:0 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:56px;
+}
+.nav-brand {
+  display:flex; align-items:center; gap:10px;
+  text-decoration:none; color:inherit;
+}
+.nav-logo-icon {
+  width:34px; height:34px; border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; box-shadow: 0 2px 8px rgba(139,108,224,0.3);
+}
+.nav-title {
+  font-family: var(--font-serif);
+  font-size:18px; font-weight:700; color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+.nav-search {
+  position:relative; width:240px;
+}
+.nav-search input {
+  width:100%; padding:8px 14px 8px 36px;
+  background: var(--bg-glass); border:1px solid var(--border-std);
+  border-radius: var(--radius-pill); color: var(--text-primary);
+  font-size:13px; font-family: var(--font-sans);
+  outline:none; transition: var(--transition);
+}
+.nav-search input:focus {
+  border-color: var(--accent-purple);
+  background: var(--bg-glass-hover);
+  box-shadow: var(--shadow-glow);
+}
+.nav-search::before {
+  content:'🔍'; position:absolute; left:12px; top:50%;
+  transform:translateY(-50%); font-size:13px; pointer-events:none;
+}
+.nav-links { display:flex; gap:2px; list-style:none; }
+.nav-links a {
+  padding:7px 14px; border-radius: var(--radius-pill);
+  font-size:13px; font-weight:500; color: var(--text-secondary);
+  text-decoration:none; transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent-gold); background: var(--accent-gold-bg);
+}
+
+/* ── Hamburger ── */
+.nav-hamburger {
+  display:none; background:none; border:none;
+  width:36px; height:36px; cursor:pointer; position:relative;
+  border-radius: var(--radius); transition: var(--transition);
+}
+.nav-hamburger:hover { background: var(--bg-glass); }
+.nav-hamburger span {
+  display:block; width:20px; height:2px; background: var(--text-secondary);
+  margin:4px auto; transition: var(--transition); border-radius:1px;
+}
+.nav-hamburger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; }
+.nav-hamburger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display:none; position:fixed; top:56px; left:0; right:0; bottom:0;
+  background: rgba(6,8,12,0.96); backdrop-filter: blur(20px);
+  z-index:99; padding:24px; flex-direction:column; gap:8px;
+  overflow-y:auto;
+}
+.mobile-menu.open { display:flex; }
+.mobile-menu a {
+  padding:14px 18px; border-radius: var(--radius);
+  font-size:16px; font-weight:500; color: var(--text-secondary);
+  text-decoration:none; transition: var(--transition);
+}
+.mobile-menu a:hover, .mobile-menu a.active {
+  color: var(--accent-gold); background: var(--accent-gold-bg);
+}
+
+/* ═══════ HERO ═══════ */
+.hero {
+  position:relative; z-index:1; text-align:center;
+  padding: 100px 24px 80px; max-width: 760px; margin:0 auto;
+}
+.hero-badge {
+  display:inline-block; padding:5px 14px; margin-bottom:20px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-purple-bg); border:1px solid rgba(139,108,224,0.15);
+  color: var(--accent-purple); font-size:12px; font-weight:600;
+  letter-spacing: 0.5px;
+}
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 7vw, 60px); font-weight:900;
+  line-height:1.1; letter-spacing: -0.5px; margin-bottom: 16px;
+  background: linear-gradient(135deg, #f0d876 0%, #d4a745 40%, #c4902e 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p {
+  font-size:17px; font-weight:400; color: var(--text-muted);
+  margin-bottom:40px; max-width:500px; margin-left:auto; margin-right:auto;
+}
+.hero-stats {
+  display:flex; justify-content:center; gap:40px; flex-wrap:wrap;
+}
+.hero-stat { text-align:center; }
+.hero-stat-val {
+  font-size:36px; font-weight:700; color: var(--accent-gold);
+  font-family: var(--font-sans); letter-spacing: -1px;
+}
+.hero-stat-lbl { font-size:12px; color: var(--text-dim); margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+
+/* ═══════ CONTAINER ═══════ */
+.container { max-width:1240px; margin:0 auto; padding:0 24px; position:relative; z-index:1; }
+
+/* ═══════ SECTION ═══════ */
+.section { padding: 72px 0; }
+.section-header {
+  display:flex; align-items:baseline; gap:14px; margin-bottom:40px;
+  flex-wrap:wrap;
+}
+.section-header .icon { font-size:26px; }
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size:28px; font-weight:700; color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+.section-header .muted { color: var(--text-muted); font-size:14px; font-weight:400; margin-left:4px; }
+
+/* ═══════ TAB BAR ═══════ */
+.tab-bar {
+  display:flex; gap:4px; margin-bottom:32px;
+  padding:4px; background: var(--bg-surface);
+  border-radius: var(--radius-md); width:fit-content;
+  border:1px solid var(--border-subtle);
+}
+.tab-btn {
+  padding:8px 20px; border:none; border-radius: var(--radius);
+  background:transparent; color: var(--text-muted);
+  font-size:13px; font-weight:500; font-family: var(--font-sans);
+  cursor:pointer; transition: var(--transition);
+}
+.tab-btn.active, .tab-btn:hover {
+  background: var(--bg-elevated); color: var(--text-primary);
+}
+.tab-btn.active { box-shadow: var(--shadow-sm); }
+
+/* ═══════ TIER LIST ═══════ */
+.tier-list { display:flex; flex-direction:column; gap:10px; }
+
+.tier-row {
+  display:grid; grid-template-columns:56px 1fr;
+  background: var(--bg-surface); border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md); overflow:hidden;
+  transition: var(--transition);
+}
+.tier-row:hover { border-color: var(--border-visible); }
+
+.tier-label {
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-sans); font-size:22px; font-weight:800;
+  letter-spacing: 2px;
+}
+.tier-s  { background: linear-gradient(135deg, #f59e0b, #d97706); color:#fff; }
+.tier-a  { background: linear-gradient(135deg, #ef4444, #dc2626); color:#fff; }
+.tier-b  { background: linear-gradient(135deg, #8b5cf6, #7c3aed); color:#fff; }
+.tier-c  { background: linear-gradient(135deg, #3b82f6, #2563eb); color:#fff; }
+
+.tier-pets {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+  gap:10px; padding:10px 14px;
+}
+
+.pet-card {
+  background: var(--bg-elevated); border:1px solid var(--border-subtle);
+  border-radius: var(--radius); padding:14px;
+  display:flex; align-items:center; gap:12px;
+  transition: all var(--transition); cursor:pointer; position:relative; overflow:hidden;
+  text-decoration:none; color:inherit;
+}
+.pet-card::after {
+  content:''; position:absolute; inset:0; opacity:0; transition: var(--transition);
+  background: linear-gradient(135deg, var(--accent-purple-bg), var(--accent-gold-bg));
+}
+.pet-card:hover { border-color: var(--border-visible); transform:translateY(-2px); box-shadow: var(--shadow-md); }
+.pet-card:hover::after { opacity: 1; }
+.pet-avatar {
+  width:46px; height:46px; border-radius: var(--radius-full);
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; flex-shrink:0; position:relative; z-index:1;
+  border:2px solid var(--border-std);
+}
+.pet-avatar.ssr { border-color: #f59e0b; box-shadow: 0 0 12px rgba(245,158,11,0.3); }
+.pet-avatar.epic { border-color: #8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.3); }
+.pet-avatar.rare { border-color: #3b82f6; }
+.pet-info { flex:1; min-width:0; position:relative; z-index:1; }
+.pet-name { font-size:14px; font-weight:600; color: var(--text-primary); }
+.pet-sub { font-size:11px; color: var(--text-muted); margin-top:1px; }
+.pet-tags { display:flex; gap:4px; margin-top:4px; flex-wrap:wrap; }
+.pet-tag {
+  font-size:10px; padding:2px 7px; border-radius: var(--radius-pill);
+  font-weight:500; letter-spacing:0.3px;
+}
+.pet-tag.role { background:rgba(91,141,239,0.15); color: var(--accent-blue); }
+.pet-tag.type { background:rgba(212,167,69,0.15); color: var(--accent-gold); }
+
+/* ═══════ ATTRIBUTE ═══════ */
+.attr-grid {
+  display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+  gap:12px;
+}
+.attr-card {
+  background: var(--bg-surface); border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding:20px;
+  transition: var(--transition);
+}
+.attr-card:hover { border-color: var(--border-visible); }
+.attr-head {
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.attr-icon {
+  width:36px; height:36px; border-radius: 6px;
+  display:flex; align-items:center; justify-content:center; font-size:18px;
+}
+.attr-head h3 { font-size:16px; font-weight:600; }
+.attr-bars { display:flex; flex-direction:column; gap:6px; }
+.attr-bar-row { display:flex; align-items:center; gap:8px; }
+.attr-bar-lbl {
+  font-size:11px; width:32px; text-align:right; color: var(--text-muted);
+  font-weight:500;
+}
+.attr-bar-track {
+  flex:1; height:6px; background: var(--bg-elevated); border-radius:3px;
+  overflow:hidden;
+}
+.attr-bar-fill { height:100%; border-radius:3px; }
+.attr-bar-fill.strong { background: linear-gradient(90deg, #4ade80, #22c55e); }
+.attr-bar-fill.weak { background: linear-gradient(90deg, #f87171, #ef4444); }
+
+/* ═══════ QUICK ACTIONS ═══════ */
+.quick-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px; }
+.quick-card {
+  background: var(--bg-surface); border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding:22px;
+  text-decoration:none; color:inherit; position:relative; overflow:hidden;
+  transition: all var(--transition);
+}
+.quick-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
+  opacity:0; transition: var(--transition);
+}
+.quick-card:hover { border-color: var(--border-visible); transform:translateY(-2px); box-shadow: var(--shadow-md); }
+.quick-card:hover::before { opacity:1; }
+.quick-card .emoji { font-size:30px; display:block; margin-bottom:10px; }
+.quick-card h3 { font-size:15px; font-weight:600; margin-bottom:3px; }
+.quick-card .desc { font-size:12px; color: var(--text-dim); }
+
+/* ═══════ GUIDE CARDS ═══════ */
+.guide-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:12px; }
+.guide-card {
+  background: var(--bg-surface); border:1px solid var(--border-subtle);
+  border-radius: var(--radius-md); padding:24px;
+  transition: all var(--transition); cursor:pointer; text-decoration:none; color:inherit; display:block;
+}
+.guide-card:hover { border-color: var(--border-visible); transform:translateY(-3px); box-shadow: var(--shadow-md); }
+.guide-card-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+.guide-card-emoji { font-size:28px; line-height:1; }
+.guide-card-badge {
+  font-size:10px; padding:3px 10px; border-radius: var(--radius-pill);
+  background: var(--accent-purple-bg); color: var(--accent-purple);
+  font-weight:600; letter-spacing:0.5px; text-transform:uppercase;
+}
+.guide-card h3 { font-size:17px; font-weight:600; margin-bottom:6px; color: var(--text-primary); }
+.guide-card p { font-size:13px; color: var(--text-secondary); line-height:1.55; margin-bottom:14px; }
+.guide-card-meta { display:flex; gap:16px; font-size:11px; color: var(--text-dim); }
+.guide-card-meta span { display:flex; align-items:center; gap:4px; }
+
+/* ═══════ BACK TO TOP ═══════ */
+.back-top {
+  position:fixed; bottom:28px; right:28px; z-index:99;
+  width:42px; height:42px; border-radius: var(--radius-full);
+  background: var(--bg-elevated); border:1px solid var(--border-std);
+  color: var(--text-secondary); font-size:18px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; opacity:0; transform:translateY(12px);
+  transition: all 0.35s ease; box-shadow: var(--shadow-md);
+}
+.back-top.visible { opacity:1; transform:translateY(0); }
+.back-top:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* ═══════ FOOTER ═══════ */
+.footer {
+  text-align:center; padding:48px 24px;
+  border-top:1px solid var(--border-subtle);
+  color: var(--text-dim); font-size:12px;
+}
+.footer a { color: var(--accent-gold); text-decoration:none; transition:var(--transition); }
+.footer a:hover { color: var(--accent-gold-hover); }
+
+/* ═══════ RESPONSIVE ═══════ */
+@media (max-width: 900px) {
+  .nav-search { display:none; }
+}
+@media (max-width: 768px) {
+  .nav-links { display:none; }
+  .nav-hamburger { display:block; }
+  .hero { padding:60px 16px 48px; }
+  .hero-stats { gap:24px; }
+  .hero-stat-val { font-size:28px; }
+  .section { padding:48px 0; }
+  .tier-row { grid-template-columns:44px 1fr; }
+  .tier-pets { grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); }
+  .guide-grid { grid-template-columns:1fr; }
+  .attr-grid { grid-template-columns:1fr; }
+  .quick-grid { grid-template-columns:repeat(2, 1fr); }
+  .tab-bar { width:100%; overflow-x:auto; }
+}
+
+/* ═══════ SCROLLBAR ═══════ */
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-visible); border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-visible); }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.animate-in { animation: fadeUp 0.5s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav" role="navigation" aria-label="主导航">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand" aria-label="洛克王国攻略站首页">
+      <div class="nav-logo-icon">🔮</div>
+      <span class="nav-title">洛克攻略站</span>
+    </a>
+    <div class="nav-search" role="search">
+      <input type="text" placeholder="搜索宠物、攻略、属性..." aria-label="站内搜索">
+    </div>
+    <ul class="nav-links" role="menubar">
+      <li role="none"><a href="#tier" role="menuitem" class="active">天梯榜</a></li>
+      <li role="none"><a href="#attribute" role="menuitem">属性克制</a></li>
+      <li role="none"><a href="#guides" role="menuitem">攻略库</a></li>
+      <li role="none"><a href="#quick" role="menuitem">快速入口</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="菜单" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
+  <a href="#tier" role="menuitem">🏆 天梯榜</a>
+  <a href="#attribute" role="menuitem">⚔️ 属性克制</a>
+  <a href="#guides" role="menuitem">📖 攻略库</a>
+  <a href="#quick" role="menuitem">🧭 快速入口</a>
+  <a href="pet.html" role="menuitem">🐉 宠物详情</a>
+  <a href="guide.html" role="menuitem">📄 攻略详情</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<header class="hero">
+  <div class="hero-badge">✨ 2026 赛季 · 版本答案</div>
+  <h1>洛克王国攻略站</h1>
+  <p>从新手到大师 — 宠物图鉴、战斗策略、培养方案、活动日历，一站式魔法冒险指南</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-val">300+</div><div class="hero-stat-lbl">收录宠物</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">18</div><div class="hero-stat-lbl">属性体系</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">S—C</div><div class="hero-stat-lbl">强度分级</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">50+</div><div class="hero-stat-lbl">攻略文章</div></div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- ═══ QUICK ═══ -->
+  <section class="section" id="quick" aria-labelledby="quick-heading">
+    <div class="section-header">
+      <span class="icon">🧭</span><h2 id="quick-heading">快速入口</h2><span class="muted">一键导航</span>
+    </div>
+    <div class="quick-grid">
+      <a class="quick-card" href="#tier"><span class="emoji">🏆</span><h3>宠物天梯榜</h3><span class="desc">PVP / PVE 综合排名</span></a>
+      <a class="quick-card" href="#attribute"><span class="emoji">⚔️</span><h3>属性克制表</h3><span class="desc">18 属性完整关系</span></a>
+      <a class="quick-card" href="#guides"><span class="emoji">📖</span><h3>新手入门</h3><span class="desc">零基础 → 满级</span></a>
+      <a class="quick-card" href="#guides"><span class="emoji">🗺️</span><h3>地图探索</h3><span class="desc">稀有宠物 & 隐藏道具</span></a>
+      <a class="quick-card" href="pet.html"><span class="emoji">⭐</span><h3>宠物详情</h3><span class="desc">天赋 / 技能 / 进化</span></a>
+      <a class="quick-card" href="guide.html"><span class="emoji">📅</span><h3>活动日历</h3><span class="desc">限时 · 节日 · 每日</span></a>
+    </div>
+  </section>
+
+  <!-- ═══ TIER ═══ -->
+  <section class="section" id="tier" aria-labelledby="tier-heading">
+    <div class="section-header">
+      <span class="icon">🏆</span><h2 id="tier-heading">宠物天梯榜</h2><span class="muted">综合 PVP 强度 · 实时更新</span>
+    </div>
+    <div class="tab-bar" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true">全部</button>
+      <button class="tab-btn" role="tab">PVP</button>
+      <button class="tab-btn" role="tab">PVE</button>
+      <button class="tab-btn" role="tab">速攻</button>
+      <button class="tab-btn" role="tab">天气队</button>
+    </div>
+
+    <div class="tier-list">
+      <!-- S Tier -->
+      <div class="tier-row">
+        <div class="tier-label tier-s" aria-label="S级">S</div>
+        <div class="tier-pets">
+          <a class="pet-card" href="pet.html?id=shenglong"><div class="pet-avatar ssr" style="background:rgba(139,92,246,0.15)">🐉</div><div class="pet-info"><div class="pet-name">圣龙阿布</div><div class="pet-sub">龙系 · 传说</div><div class="pet-tags"><span class="pet-tag role">全能核心</span><span class="pet-tag type">PVP T0</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=youlan"><div class="pet-avatar ssr" style="background:rgba(236,72,153,0.15)">🦋</div><div class="pet-info"><div class="pet-name">幽兰雪魅</div><div class="pet-sub">冰系 · 史诗</div><div class="pet-tags"><span class="pet-tag role">速控核心</span><span class="pet-tag type">PVP T0</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=yiwang"><div class="pet-avatar ssr" style="background:rgba(245,158,11,0.15)">🦅</div><div class="pet-info"><div class="pet-name">翼王</div><div class="pet-sub">翼系 · 传说</div><div class="pet-tags"><span class="pet-tag role">高速收割</span><span class="pet-tag type">PVP T0</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=wudou"><div class="pet-avatar ssr" style="background:rgba(148,163,184,0.15)">⚔️</div><div class="pet-info"><div class="pet-name">武斗酷猫</div><div class="pet-sub">武系 · 史诗</div><div class="pet-tags"><span class="pet-tag role">物理打手</span><span class="pet-tag type">PVP T0</span></div></div></a>
+        </div>
+      </div>
+      <!-- A Tier -->
+      <div class="tier-row">
+        <div class="tier-label tier-a" aria-label="A级">A</div>
+        <div class="tier-pets">
+          <a class="pet-card" href="pet.html?id=shuiling"><div class="pet-avatar epic" style="background:rgba(56,189,248,0.15)">🐳</div><div class="pet-info"><div class="pet-name">水灵</div><div class="pet-sub">水系 · 稀有</div><div class="pet-tags"><span class="pet-tag role">PVE万金油</span><span class="pet-tag type">速通首选</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=pili"><div class="pet-avatar epic" style="background:rgba(250,204,21,0.15)">⚡</div><div class="pet-info"><div class="pet-name">霹雳雷球</div><div class="pet-sub">电系 · 稀有</div><div class="pet-tags"><span class="pet-tag role">先手压制</span><span class="pet-tag type">PVP T1</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=qili"><div class="pet-avatar epic" style="background:rgba(74,222,128,0.15)">🌿</div><div class="pet-info"><div class="pet-name">奇丽草</div><div class="pet-sub">草系 · 普通</div><div class="pet-tags"><span class="pet-tag role">消耗之王</span><span class="pet-tag type">PVP T1</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=huoshen"><div class="pet-avatar epic" style="background:rgba(249,115,22,0.15)">🔥</div><div class="pet-info"><div class="pet-name">火神</div><div class="pet-sub">火系 · 稀有</div><div class="pet-tags"><span class="pet-tag role">爆发输出</span><span class="pet-tag type">PVE主力</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=bingjing"><div class="pet-avatar epic" style="background:rgba(103,232,249,0.15)">❄️</div><div class="pet-info"><div class="pet-name">冰晶古齿虎</div><div class="pet-sub">冰系 · 稀有</div><div class="pet-tags"><span class="pet-tag role">天气核心</span><span class="pet-tag type">PVP T1</span></div></div></a>
+        </div>
+      </div>
+      <!-- B Tier -->
+      <div class="tier-row">
+        <div class="tier-label tier-b" aria-label="B级">B</div>
+        <div class="tier-pets">
+          <a class="pet-card" href="pet.html?id=youying"><div class="pet-avatar rare" style="background:rgba(192,132,252,0.15)">👻</div><div class="pet-info"><div class="pet-name">幽影</div><div class="pet-sub">幽灵系 · 普通</div><div class="pet-tags"><span class="pet-tag role">功能对策</span><span class="pet-tag type">PVP T2</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=yanshi"><div class="pet-avatar rare" style="background:rgba(168,162,158,0.15)">🪨</div><div class="pet-info"><div class="pet-name">岩石巨人</div><div class="pet-sub">石系 · 普通</div><div class="pet-tags"><span class="pet-tag role">肉盾对策</span><span class="pet-tag type">PVE可用</span></div></div></a>
+          <a class="pet-card" href="pet.html?id=huangfeng"><div class="pet-avatar rare" style="background:rgba(251,191,36,0.15)">🐝</div><div class="pet-info"><div class="pet-name">黄蜂后</div><div class="pet-sub">虫系 · 普通</div><div class="pet-tags"><span class="pet-tag role">特攻手</span><span class="pet-tag type">PVP T2</span></div></div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ATTRIBUTE ═══ -->
+  <section class="section" id="attribute" aria-labelledby="attr-heading">
+    <div class="section-header">
+      <span class="icon">⚔️</span><h2 id="attr-heading">属性克制表</h2><span class="muted">18 属性 · 完整克制关系</span>
+    </div>
+    <div class="attr-grid" id="attrGrid">
+      <!-- Filled by JS -->
+    </div>
+  </section>
+
+  <!-- ═══ GUIDES ═══ -->
+  <section class="section" id="guides" aria-labelledby="guides-heading">
+    <div class="section-header">
+      <span class="icon">📖</span><h2 id="guides-heading">精选攻略</h2><span class="muted">每周更新 · 实测验证</span>
+    </div>
+    <div class="guide-grid">
+      <a class="guide-card" href="guide.html?id=newbie"><div class="guide-card-top"><div class="guide-card-emoji">🚀</div><div class="guide-card-badge">新手必读</div></div><h3>7天速成：从零到满级</h3><p>每日必做任务清单、宠物获取优先级、洛克钻最优使用策略。保姆级教程。</p><div class="guide-card-meta"><span>📅 2026-05</span><span>⏱ 12 min</span><span>👁 23.4k</span></div></a>
+      <a class="guide-card" href="guide.html?id=pvp"><div class="guide-card-top"><div class="guide-card-emoji">🎯</div><div class="guide-card-badge">PVP</div></div><h3>天梯冲分：当前阵容解析</h3><p>大师→王者分段热门队伍。BP 策略、counter 选择、天气队构建与破解。</p><div class="guide-card-meta"><span>📅 2026-05</span><span>⏱ 18 min</span><span>👁 18.7k</span></div></a>
+      <a class="guide-card" href="guide.html?id=culture"><div class="guide-card-top"><div class="guide-card-emoji">⚡</div><div class="guide-card-badge">深度</div></div><h3>宠物培养全景指南</h3><p>天赋值洗练最优方案、努力值分配原理、31种性格修正选择、技能连锁搭配全攻略。</p><div class="guide-card-meta"><span>📅 2026-04</span><span>⏱ 25 min</span><span>👁 31.2k</span></div></a>
+      <a class="guide-card" href="guide.html?id=map"><div class="guide-card-top"><div class="guide-card-emoji">🗺️</div><div class="guide-card-badge">探索</div></div><h3>全地图稀有宠物分布</h3><p>全区域稀有/隐藏宠物刷新坐标、时间、捕捉条件一图流。含隐藏地图路线。</p><div class="guide-card-meta"><span>📅 2026-05</span><span>⏱ 15 min</span><span>👁 42.1k</span></div></a>
+      <a class="guide-card" href="guide.html?id=items"><div class="guide-card-top"><div class="guide-card-emoji">💎</div><div class="guide-card-badge">效率</div></div><h3>道具获取最优路线</h3><p>洛克钻、经验果、进化石等核心道具的每日最优路线。周常副本打法与掉落优先级。</p><div class="guide-card-meta"><span>📅 2026-04</span><span>⏱ 10 min</span><span>👁 15.9k</span></div></a>
+      <a class="guide-card" href="guide.html?id=calendar"><div class="guide-card-top"><div class="guide-card-emoji">📅</div><div class="guide-card-badge">活动</div></div><h3>2026年5月活动日历</h3><p>当月限时活动汇总、奖励预览、参与优先级排序。不错过任何限时宠物和稀有道具。</p><div class="guide-card-meta"><span>📅 2026-05</span><span>⏱ 8 min</span><span>👁 56.3k</span></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" role="contentinfo">
+  <nav aria-label="页脚导航">
+    <p>洛克王国攻略站 · 为小洛克们打造的魔法指南 · 持续更新中</p>
+    <p style="margin-top:6px">
+      <a href="/">首页</a> · <a href="pet.html">宠物详情</a> · <a href="guide.html">攻略详情</a> · <a href="sitemap.xml">网站地图</a>
+    </p>
+  </nav>
+  <p style="margin-top:12px;color:var(--text-dim)">© 2026 Roco Kingdom Guide — 非官方玩家社区</p>
+</footer>
+
+<button class="back-top" id="backTop" title="回到顶部" aria-label="回到顶部">↑</button>
+
+<script>
+// ── Back to Top ──
+const backBtn = document.getElementById('backTop');
+window.addEventListener('scroll', () => { backBtn.classList.toggle('visible', window.scrollY > 600); });
+backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+// ── Hamburger Menu ──
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  const isOpen = hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open', isOpen);
+  hamburger.setAttribute('aria-expanded', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── Tab Switching ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.parentElement.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+    this.classList.add('active');
+    this.setAttribute('aria-selected','true');
+  });
+});
+
+// ── Smooth Nav Highlight ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+});
+
+// ── Search ──
+document.querySelector('.nav-search input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { this.placeholder = '搜索功能即将上线...'; setTimeout(() => { this.placeholder = '搜索宠物、攻略、属性...'; }, 2000); }
+});
+
+// ── Attribute Data ──
+const attrs = [
+  { icon:'🔥', name:'火系', color:'rgba(249,115,22,0.15)', strong:'草 冰 虫 钢', strongW:80, weak:'水 石 龙 土', weakW:80 },
+  { icon:'💧', name:'水系', color:'rgba(56,189,248,0.15)', strong:'火 石 土', strongW:60, weak:'草 电 龙', weakW:60 },
+  { icon:'🌿', name:'草系', color:'rgba(74,222,128,0.15)', strong:'水 石 土', strongW:60, weak:'火 冰 虫 飞 毒', weakW:100 },
+  { icon:'⚡', name:'电系', color:'rgba(250,204,21,0.15)', strong:'水 飞 钢', strongW:60, weak:'土 草 龙', weakW:60 },
+  { icon:'🐉', name:'龙系', color:'rgba(139,92,246,0.15)', strong:'水 火 草 电', strongW:80, weak:'冰 龙 武 毒', weakW:80 },
+  { icon:'❄️', name:'冰系', color:'rgba(103,232,249,0.15)', strong:'草 龙 飞 土', strongW:80, weak:'火 武 石 钢', weakW:80 },
+  { icon:'👊', name:'武系', color:'rgba(239,68,68,0.15)', strong:'冰 石 钢 普通', strongW:80, weak:'飞 超 毒 虫', weakW:80 },
+  { icon:'🪨', name:'石系', color:'rgba(168,162,158,0.15)', strong:'火 冰 飞 虫', strongW:80, weak:'水 草 武 土 钢', weakW:100 },
+  { icon:'🕊️', name:'翼系', color:'rgba(147,197,253,0.15)', strong:'草 武 虫', strongW:60, weak:'电 冰 石 龙', weakW:80 },
+  { icon:'👻', name:'幽灵系', color:'rgba(192,132,252,0.15)', strong:'超 幽灵', strongW:40, weak:'恶 幽灵 · 普免', weakW:60 },
+  { icon:'🧠', name:'超能系', color:'rgba(236,72,153,0.15)', strong:'武 毒', strongW:40, weak:'虫 幽灵 恶', weakW:60 },
+  { icon:'🐛', name:'虫系', color:'rgba(251,191,36,0.15)', strong:'草 超 恶', strongW:60, weak:'火 飞 石 冰 毒 钢', weakW:100 },
+];
+
+const attrGrid = document.getElementById('attrGrid');
+attrs.forEach(a => {
+  const card = document.createElement('div');
+  card.className = 'attr-card';
+  card.innerHTML = `<div class="attr-head"><div class="attr-icon" style="background:${a.color}">${a.icon}</div><h3>${a.name}</h3></div>
+    <div class="attr-bars">
+      <div class="attr-bar-row"><span class="attr-bar-lbl">克</span><div class="attr-bar-track"><div class="attr-bar-fill strong" style="width:${a.strongW}%"></div></div><span style="font-size:11px;color:var(--text-muted)">${a.strong}</span></div>
+      <div class="attr-bar-row"><span class="attr-bar-lbl">被</span><div class="attr-bar-track"><div class="attr-bar-fill weak" style="width:${a.weakW}%"></div></div><span style="font-size:11px;color:var(--text-muted)">${a.weak}</span></div>
+    </div>`;
+  attrGrid.appendChild(card);
+});
+</script>
+
+</body>
+</html>
