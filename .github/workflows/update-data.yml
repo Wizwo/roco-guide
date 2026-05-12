@@ -26,9 +26,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: 安装依赖
-        run: npm install
-
       - name: 运行爬虫
         run: node scripts/scrape-pets.js
 
