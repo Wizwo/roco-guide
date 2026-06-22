@@ -1,21 +1,31 @@
 {
-  "updatedAt": "2026-06-21T06:49:01.461Z",
-  "totalCount": 3,
+  "updatedAt": "2026-06-22T07:21:33.021Z",
+  "totalCount": 5,
   "pets": {
-    "阿米樱": {
-      "name": "阿米樱",
-      "slug": "阿米樱",
-      "wikiTitle": "阿米樱"
-    },
     "阿布": {
       "name": "阿布",
       "slug": "阿布",
       "wikiTitle": "阿布"
     },
+    "阿米樱": {
+      "name": "阿米樱",
+      "slug": "阿米樱",
+      "wikiTitle": "阿米樱"
+    },
     "阿米亚特": {
       "name": "阿米亚特",
       "slug": "阿米亚特",
       "wikiTitle": "阿米亚特"
+    },
+    "贝瑟": {
+      "name": "贝瑟",
+      "slug": "贝瑟",
+      "wikiTitle": "贝瑟"
+    },
+    "冰晶虎": {
+      "name": "冰晶虎",
+      "slug": "冰晶虎",
+      "wikiTitle": "冰晶虎"
     }
   }
 }
